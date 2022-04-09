@@ -38,8 +38,11 @@ namespace Better079.Commands
 
             Scp079PlayerScript playerScript = player.ReferenceHub.scp079PlayerScript;
 
-            if (float.TryParse(arguments.At<string>(0), out float time) && playerScript.Mana >= Better079.Instance.Config.OverchargePrice)
+            if (playerScript.Mana >= Better079.Instance.Config.OverchargePrice)
             {
+                float time = 0;
+                if(arguments.Any())
+                    time = float.Parse(arguments.At<string>(0));
                 if (time > Better079.Instance.Config.OverchargeMaxtime)
                 {
                     response = $"Error! Time can't be higher than {Better079.Instance.Config.OverchargeMaxtime} sec";
